@@ -2,12 +2,12 @@ apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
   name: backstage
-  description: An example of a Backstage application.
+  description: Backstage application for Digital Engineering LTIMindtree.
   # Example for optional annotations
   # annotations:
   #   github.com/project-slug: backstage/backstage
   #   backstage.io/techdocs-ref: dir:.
 spec:
   type: website
-  owner: john@example.com
+  owner: digital-studio@ltimindtree.com
   lifecycle: experimental
