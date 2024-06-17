@@ -1,0 +1,127 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: daks
+  title: New Cluster (AKS) in Private Cloud (Lab)
+  description: Request an AKS Cluster to host workloads in Private Cloud (DE Lab)
+  tags:
+    - caas
+    - aks
+    - de-lab
+spec:
+  owner: infrastructure
+  type: resource
+  parameters:
+    - title: Cluster Configuration Parameters
+      required:
+        - cluster_id
+        - region
+        - resource_group
+        - vnet
+        - subnet
+      properties:
+        cluster_id:
+          title: Cluster ID
+          type: string
+          description: ID of this Cluster that other objects will use to refer to it.
+        region:
+          title: Region
+          type: string
+          description: Region is the region you'd like your resource to be created in.
+        resource_group:
+          title: Resource Group
+          type: string
+          description: Resource Group is the region you'd like your resource to be created in.
+        network_type:
+          title: Network Type
+          type: string
+          description: The type of network detault or existing subnets.
+          default: "delab"
+          enum: 
+            - "basic"
+            - "delab"
+        vnet:
+          title: VNet
+          type: string
+          description: VNet is the region you'd like your resource to be created in.
+        subnet:
+          title: Subnet
+          type: string
+          description: Subnet is the region you'd like your resource to be created in.
+        version:
+          title: Version
+          type: string
+          description: Kubernetes version of the Cluster
+          default: "1.27.3"
+          enum:
+            - "1.27.3"
+            - "1.26.6"
+            - "1.25.11"
+        nodes_count:
+          title: Node Group Size
+          type: integer
+          description: Desired node count, from 1 to 100.
+          default: 3
+        nodes_instance_type:
+          title: Node Instance Type
+          type: string
+          description: Instance type associated with the Node Group.
+          default: Standard_B2s
+        custom_kyverno_policies:
+          title: Custom Policy Repository Location
+          type: string
+          description: The source repository of the custome Kyverno policies specific to the cluster
+    - title: Destination
+      required:
+        - repo_url
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+        pull_request_branch_name:
+          title: Branch name for Pull Request
+          type: string
+          default: new-cluster-request
+  steps:
+    - id: template-cluster
+      name: Fetch cluster claim template
+      action: fetch:template
+      input:
+        url: ./skeleton
+        targetPath: demo/clusters
+        values:
+          cluster_id: ${{ parameters.cluster_id }}
+          region: ${{ parameters.region }}
+          resource_group: ${{ parameters.resource_group }}
+          vnet: ${{ parameters.vnet }}
+          subnet: ${{ parameters.subnet }}
+          version: ${{ parameters.version }}
+          nodes_count: ${{ parameters.nodes_count }}
+          nodes_instance_type: ${{ parameters.nodes_instance_type }}
+    - id: publish
+      name: Publish
+      action: publish:github:pull-request
+      input:
+        allowedHosts: ['github.com']
+        title: Request for new DE Lab AKS cluster
+        description: |
+          Cluster ID:     ${{ parameters.cluster_id }}
+          Region:         ${{ parameters.region }}
+          Resource Group: ${{ parameters.resource_group }}
+          VNet: ${{ parameters.vnet }}
+          Subnet: ${{ parameters.subnet }}
+          Version:        ${{ parameters.version }}
+          Nodes:          ${{ parameters.nodes_instance_type }} (${{ parameters.nodes_count }})
+        repoUrl: ${{ parameters.repo_url }}
+        branchName: ${{ parameters.pull_request_branch_name }}
+  output:
+    text:
+      - title: Accept Pull Request
+        content: |
+          Your New DE Lab Cluster Request has been published to GitHub.
+
+          To finish creating the cluster, review and accept the [pull request](${{ steps['publish'].output.remoteUrl }})

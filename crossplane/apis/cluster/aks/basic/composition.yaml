@@ -2,6 +2,9 @@ apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
   name: xaksclusters.backstack.dev
+  labels:
+    provider: azure
+    type: basic
 spec:
   writeConnectionSecretsToNamespace: crossplane-system
   publishConnectionDetailsWithStoreConfigRef:

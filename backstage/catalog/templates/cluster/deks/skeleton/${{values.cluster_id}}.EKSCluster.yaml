@@ -7,7 +7,10 @@ spec:
   parameters:
     id: ${{ values.cluster_id }}
     region: ${{ values.region }}
-    spec.compositionSelector.matchLabels[type]: basic
+    networkSelector: ${{ values.network_type }}
+    vpcId: ${{ values.vpcId }}
+    subnets: [ ${{ values.subnets }} ]
+    spec.compositionSelector.matchLabels[type] : ${{ values.network_type }}
     iam:
       roleArn: ${{ values.iam_role_arn}}
     version: "${{ values.version }}"

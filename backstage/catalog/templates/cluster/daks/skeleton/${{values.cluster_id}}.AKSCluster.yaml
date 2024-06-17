@@ -1,5 +1,5 @@
 apiVersion: backstack.dev/v1alpha1
-kind: EKSCluster
+kind: AKSCluster
 metadata:
   name: ${{ values.cluster_id }}
   namespace: default
@@ -7,10 +7,12 @@ spec:
   parameters:
     id: ${{ values.cluster_id }}
     region: ${{ values.region }}
-    spec.compositionSelector.matchLabels[type]: basic
-    iam:
-      roleArn: ${{ values.iam_role_arn}}
-    version: "${{ values.version }}"
+    networkSelector: ${{ values.network_type }}
+    spec.compositionSelector.matchLabels[type]: ${{ values.network_type }}
+    resourceGroup: ${{ values.resource_group }}
+    vnet: ${{ values.vnet }}
+    subnet: ${{ values.subnet }}
+    version: ${{ values.version }}
     nodes:
       count: ${{ values.nodes_count }}
       instanceType: ${{ values.nodes_instance_type }}

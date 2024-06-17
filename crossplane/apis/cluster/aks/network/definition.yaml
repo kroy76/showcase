@@ -33,3 +33,12 @@ spec:
                 type: object
             required:
             - parameters
+          status:
+            type: object
+            properties:
+              subnet:
+                type: string
+              vnet:
+                type: string
+              resourceGroup:
+                type: string

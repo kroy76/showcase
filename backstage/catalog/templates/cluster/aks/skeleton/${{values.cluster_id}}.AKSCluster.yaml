@@ -8,6 +8,7 @@ spec:
     id: ${{ values.cluster_id }}
     region: ${{ values.region }}
     version: ${{ values.version }}
+    spec.compositionSelector.matchLabels[type]: basic
     nodes:
       count: ${{ values.nodes_count }}
       instanceType: ${{ values.nodes_instance_type }}
