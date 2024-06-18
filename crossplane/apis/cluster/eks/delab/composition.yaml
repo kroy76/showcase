@@ -46,3 +46,4 @@ spec:
           toFieldPath: spec.parameters.subnetIds
           policy:
             fromFieldPath: Required
+                - type: ToCompositeFieldPath
