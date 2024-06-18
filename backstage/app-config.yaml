@@ -95,6 +95,8 @@ catalog:
     ## Uncomment these lines to add more example data
     - type: url
       target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
+      rules: 
+        - allow: [ Component, System, API, Resource, Location ]
 
     ## Uncomment these lines to add an example org
     - type: url
