@@ -50,6 +50,3 @@ spec:
         - type: ToCompositeFieldPath
           fromFieldPath: spec.parameters.subnets
           toFieldPath: status.subnetIds
-          policy:
-            fromFieldPath: Required
-                - type: ToCompositeFieldPath
