@@ -89,10 +89,4 @@ spec:
                 - region
             required:
             - parameters
-          status:
-            type: object
-            properties:
-              subnetIds:
-                type: array
-                items:
-                  type: string
+
