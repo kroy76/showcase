@@ -48,7 +48,7 @@ spec:
             catalogFilter:
               - kind: Resource
                 spec.type: kubernetes-cluster
-      - title: K8s GitOps Repo Destination
+    - title: K8s GitOps Repo Destination
       required:
         - repo_url
       properties:
