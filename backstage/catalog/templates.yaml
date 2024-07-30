@@ -12,3 +12,12 @@ spec:
     - ./templates/cluster/daks/template.yaml
     - ./templates/apps/javarest-k8s/template.yaml
     - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/clean-architecture-app/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/create-react-app/template.yaml
+    - https://github.com/backstage/software-templates/tree/main/scaffolder-templates/docs-template-cookiecutter/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/docs-template/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/gitlab-merge-request/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/pull-request/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/rails-demo/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/react-ssr-template/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/springboot-grpc-template/template.yaml
+    - 
