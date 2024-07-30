@@ -1,0 +1,12 @@
+site_name: "Java Rest K8s Template"
+site_description: "This is simple Java CRUD REST template with Swagger implementation."
+
+nav:
+  - Introduction: index.md
+  - FastAPI Application: restcrud/readme.md
+
+plugins:
+  - techdocs-core
+
+theme:
+  name: material

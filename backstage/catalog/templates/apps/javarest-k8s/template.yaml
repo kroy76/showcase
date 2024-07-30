@@ -104,7 +104,7 @@ spec:
       name: Fetch Application Base
       action: fetch:template
       input:
-        url: https://github.com/kroy76/showcase/tree/main/backstage/catalog/templates/apps/javarest-k8s/content
+        url: ./content
         targetPath: ./app-${{ parameters.app_name }}
         values:
           app_name: ${{ parameters.app_name }}
