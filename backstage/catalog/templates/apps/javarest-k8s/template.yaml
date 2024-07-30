@@ -1,0 +1,174 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: java-restcrud-k8s
+  title: Java Rest API with Kubernetes
+  description: Create & Deploy a Java Rest API with Kubernetes
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+  tags:
+    - app
+    - java
+    - kubernetes
+    - rest-api
+    - crud
+spec:
+  owner: infrastructure
+  type: component
+
+  parameters:
+    - title: Application details
+      required:
+        - app_name
+        - cluster_id
+      properties:
+        app_name:
+          title: Application Name
+          type: string
+          description: Unique name of the application
+          ui:autofocus: true
+          ui:options:
+            rows: 3
+          ui:placeholder: |
+            Enter the application name without any whitespaces
+        description:
+          title: Description
+          type: string
+          description: Details about the application
+          ui:options:
+            rows: 3
+          ui:placeholder: |
+            Enter a description that appears in the software catalog
+        cluster_id:
+          title: Cluster ID
+          type: string
+          description: ID of the Cluster to target for deployment
+          ui:field: EntityPicker
+          ui:options:
+            catalogFilter:
+              - kind: Resource
+                spec.type: kubernetes-cluster
+      - title: K8s GitOps Repo Destination
+      required:
+        - repo_url
+      properties:
+        repo_url:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+        pull_request_branch_name:
+          title: Branch name for Pull Request
+          type: string
+          default: new-application-request
+
+    # - title: Infrastructure details
+    #   required:
+    #     - project_id
+    #   properties:
+    #     project_id:
+    #       title: Project ID
+    #       type: string
+    #       description: ID of an existing project 
+    #       ui:autofocus: true
+    #       ui:options:
+    #         rows: 3
+    #     resourceUserGroup:
+    #       title: Resource User Group
+    #       type: string
+    #       description: Members of this Genie group will have access to all the resources being provisioned (repo, pipelines, infrastructure)
+    #       ui:options:
+    #         rows: 3
+    #     resourceAdminGroup:
+    #       title: Resource Admin Group
+    #       type: string
+    #       description: Members of this Genie group will have administrative access to the resources being provisioned
+    #       ui:options:
+    #         rows: 3
+
+    # - title: Database details
+    #   required:
+    #     - databaseName
+    #   properties:
+    #     databaseName:
+    #       title: Database Name
+    #       type: string
+    #       description: Name of the database
+    #       ui:options:
+    #         rows: 3
+
+  steps:
+    - id: fetch-base-app
+      name: Fetch Application Base
+      action: fetch:template
+      input:
+        url: ./content
+        targetPath: ./app-${{ parameters.app_name }}
+        values:
+          app_name: ${{ parameters.app_name }}
+          description: ${{ parameters.description }}
+
+    - id: publish-app
+      name: Publish Application
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        defaultBranch: main
+        description: This is Java Rest API app ${{ parameters.app_name }}. ${{ parameters.description }}
+        repoUrl: github.com?owner=kroy76&repo=app-${{ parameters.app_name }}
+        repoVisibility: public
+        protectDefaultBranch: false
+        sourcePath: ./app-${{ parameters.app_name }}
+
+    # - id: fetch-base-cloud-run
+    #   name: Fetch Cloud Run Base
+    #   action: fetch:template
+    #   input:
+    #     url: https://github.com/monkmantra/terraform-cloudrun-template/tree/main/cloud-run-skeleton/content
+    #     targetPath: ./terraform-${{ parameters.app_name }}
+    #     values:
+    #       project_id: ${{ parameters.project_id }}
+    #       app_name: ${{ parameters.app_name }}
+    #       description: ${{ parameters.description }}
+    #       db_name: ${{ parameters.databaseName }}
+
+    # - id: publish-infra
+    #   name: Publish Infra
+    #   action: publish:github
+    #   input:
+    #     allowedHosts: ['github.com']
+    #     defaultBranch: main
+    #     description: This is cloud run ${{ parameters.app_name }} in ${{ parameters.project_id }}
+    #     repoUrl: github.com?owner=monkmantra&repo=terraform-${{ parameters.app_name }}
+    #     repoVisibility: public
+    #     protectDefaultBranch: false
+    #     sourcePath: ./terraform-${{ parameters.app_name }}
+
+    - id: register-app
+      name: Register App
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish-app'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+    # - id: register-infra
+    #   name: Register Infra
+    #   action: catalog:register
+    #   input:
+    #     repoContentsUrl: ${{ steps['publish-infra'].output.repoContentsUrl }}
+    #     catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: Java Rest API CRUD Repo
+        url: ${{ steps['publish-app'].output.remoteUrl }}
+      # - title: Terraform Infra Repository
+      #   url: ${{ steps['publish-infra'].output.remoteUrl }}
+      - title: Open Application in catalog
+        icon: catalog
+        entityRef: ${{ steps['register-app'].output.entityRef }}
+      # - title: Open Infra in catalog
+      #   icon: catalog
+      #   entityRef: ${{ steps['register-infra'].output.entityRef }}

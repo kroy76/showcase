@@ -10,3 +10,4 @@ spec:
     - ./templates/application/template.yaml
     - ./templates/cluster/deks/template.yaml
     - ./templates/cluster/daks/template.yaml
+    - ./templates/apps/javarest-k8s/template.yaml
