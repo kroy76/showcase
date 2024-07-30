@@ -11,3 +11,4 @@ spec:
     - ./templates/cluster/deks/template.yaml
     - ./templates/cluster/daks/template.yaml
     - ./templates/apps/javarest-k8s/template.yaml
+    - https://github.com/backstage/software-templates/blob/main/scaffolder-templates/clean-architecture-app/template.yaml
