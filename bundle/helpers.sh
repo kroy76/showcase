@@ -71,6 +71,8 @@ EOF
     stringData:
       GITHUB_TOKEN: ${GITHUB_TOKEN}
       VAULT_TOKEN: ${VAULT_TOKEN}
+      AUTH_GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}
+      AUTH_GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
 EOF
 
   ensure_namespace crossplane-system

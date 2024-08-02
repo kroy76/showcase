@@ -30,6 +30,14 @@ credentials:
     required: false
     applyTo:
       - install
+  - name: github-client-id
+    env: GITHUB_CLIENT_ID
+    applyTo:
+      - install
+  - name: github-client-secret
+    env: GITHUB_CLIENT_SECRET
+    applyTo:
+      - install
 
 parameters:
   - name: cluster-type
