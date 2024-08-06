@@ -65,7 +65,6 @@ techdocs:
 auth:
   environment: development
   providers:
-    guest: {}
     github:
       development:
         clientId: ${AUTH_GITHUB_CLIENT_ID}
