@@ -61,10 +61,6 @@ import { EntityVaultCard } from '@backstage/plugin-vault';
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
-//Integrate GitHub Actions KRC
-import { EntityGithubActionsContent } from '@backstage-community/plugin-github-actions';
-import { EntityRecentGithubActionsRunsCard } from '@backstage-community/plugin-github-actions';
-
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -146,9 +142,6 @@ const overviewContent = (
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
-    <Grid item sm={6}>
-      <EntityRecentGithubActionsRunsCard limit={4} variant="gridItem" />
-    </Grid>
   </Grid>
 );
 
@@ -168,7 +161,6 @@ const serviceEntityPage = (
 
     <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
-      <EntityGithubActionsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/api" title="API">

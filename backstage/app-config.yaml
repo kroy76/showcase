@@ -1,5 +1,5 @@
 app:
-  title: LTIMindtree Backstage App
+  title: Scaffolded Backstage App
   baseUrl: http://localhost:3000
 
 organization:

@@ -3,8 +3,6 @@ kind: Component
 metadata:
   name: backstage
   description: Software Catalog
-  annotations:
-    github.com/project-slug: 'kroy76/showcase'
 spec:
   type: service
   lifecycle: production
