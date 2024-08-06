@@ -84,6 +84,14 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Sonar Code check
+        uses: sonarsource/sonarqube-scan-action@master
+          env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          projectBaseDir: backstage
+
       - name: Run yarn install
         uses: borales/actions-yarn@v5
         with:
