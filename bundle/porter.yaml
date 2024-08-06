@@ -30,6 +30,21 @@ credentials:
     required: false
     applyTo:
       - install
+  - name: sonar-token
+    env: SONARQUBE_TOKEN
+    required: false
+    applyTo:
+      - install
+  - name: github-client-id
+    env: GITHUB_CLIENT_ID
+    required: false
+    applyTo:
+      - install
+  - name: github-client-secret
+    env: GITHUB_CLIENT_SECRET
+    required: false
+    applyTo:
+      - install
 
 parameters:
   - name: cluster-type

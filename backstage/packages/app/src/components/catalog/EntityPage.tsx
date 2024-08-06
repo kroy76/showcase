@@ -61,6 +61,8 @@ import { EntityVaultCard } from '@backstage/plugin-vault';
 import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
+import { EntitySonarQubeCard } from '@backstage-community/plugin-sonarqube';
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -141,6 +143,9 @@ const overviewContent = (
     </Grid>
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
+    </Grid>
+    <Grid item md={6}>
+      <EntitySonarQubeCard variant="gridItem" />
     </Grid>
   </Grid>
 );

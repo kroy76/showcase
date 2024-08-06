@@ -3,6 +3,8 @@ kind: Component
 metadata:
   name: backstage
   description: Software Catalog
+  annotations:
+    sonarqube.org/project-key: kroy76-backstage
 spec:
   type: service
   lifecycle: production
