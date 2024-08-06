@@ -62,6 +62,7 @@ import { TechDocsAddons } from '@backstage/plugin-techdocs-react';
 import { ReportIssue } from '@backstage/plugin-techdocs-module-addons-contrib';
 
 //Integrate GitHub Actions KRC
+import { EntityGithubActionsContent } from '@backstage-community/plugin-github-actions';
 import { EntityRecentGithubActionsRunsCard } from '@backstage-community/plugin-github-actions';
 
 const techdocsContent = (
