@@ -33,7 +33,8 @@ import { ServerPermissionClient } from '@backstage/plugin-permission-node';
 import { DefaultIdentityClient } from '@backstage/plugin-auth-node';
 import kubernetes from './plugins/kubernetes';
 import vault from './plugins/vault';
-import sonarqube from './plugins/sonarqube'
+import sonarqube from './plugins/sonarqube';
+import { createBackend } from '@backstage/backend-defaults';
 
 function makeCreateEnv(config: Config) {
   const root = getRootLogger();
@@ -102,6 +103,11 @@ async function main() {
   apiRouter.use('/kubernetes', await kubernetes(kubernetesEnv));
   apiRouter.use('/vault', await vault(vaultEnv));
   apiRouter.use('/sonarqube', await sonarqube(sonarqubeEnv));
+
+  const backend = createBackend();
+  // ... other feature additions
+  backend.add(import('@backstage-community/plugin-sonarqube-backend'));
+  backend.start();
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
