@@ -1,9 +1,0 @@
-spec:
-      containers:
-        - name: restcrud
-          image: ghcr.io/kroy76/app-${{ values.app_name }}:latest
-          ports:
-          - containerPort: 5000
-          resources: {}
-      imagePullSecrets:
-        - name: dockerdeployment

@@ -1,7 +1,0 @@
-namePrefix: kustomize-
-
-resources:
-- k8.yml
-- namespace.yml
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
