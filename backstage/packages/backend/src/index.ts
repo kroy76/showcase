@@ -107,6 +107,7 @@ async function main() {
   const backend = createBackend();
   // ... other feature additions
   backend.add(import('@backstage-community/plugin-sonarqube-backend'));
+  backend.add(import('@backstage/plugin-kubernetes-backend'));
   backend.start();
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
