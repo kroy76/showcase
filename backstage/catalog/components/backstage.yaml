@@ -5,6 +5,7 @@ metadata:
   description: Software Catalog
   annotations:
     sonarqube.org/project-key: kroy76-backstage
+    backstage.io/kubernetes-label-selector: app.kubernetes.io/component=backstage
 spec:
   type: service
   lifecycle: production
