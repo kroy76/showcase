@@ -104,11 +104,11 @@ async function main() {
   apiRouter.use('/vault', await vault(vaultEnv));
   apiRouter.use('/sonarqube', await sonarqube(sonarqubeEnv));
 
-  const backend = createBackend();
+  //const backend = createBackend();
   // ... other feature additions
-  backend.add(import('@backstage-community/plugin-sonarqube-backend'));
+  //backend.add(import('@backstage-community/plugin-sonarqube-backend'));
   //backend.add(import('@backstage/plugin-kubernetes-backend/alpha'));
-  backend.start();
+  //backend.start();
 
   // Add backends ABOVE this line; this 404 handler is the catch-all fallback
   apiRouter.use(notFoundHandler());
