@@ -14,6 +14,7 @@
     "lint": "backstage-cli package lint"
   },
   "dependencies": {
+    "@backstage-community/plugin-github-actions": "^0.6.19",
     "@backstage-community/plugin-sonarqube": "^0.7.19",
     "@backstage/app-defaults": "^1.4.4",
     "@backstage/catalog-model": "^1.4.3",
