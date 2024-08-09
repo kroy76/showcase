@@ -3655,15 +3655,6 @@
     "@backstage/types" "^1.1.1"
     google-auth-library "^8.0.0"
 
-"@backstage/plugin-auth-backend-module-github-provider@^0.1.19":
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/@backstage/plugin-auth-backend-module-github-provider/-/plugin-auth-backend-module-github-provider-0.1.19.tgz#11b3d9b5ae570f586ec217e9b41f51538bca183a"
-  integrity sha512-1Wls9RwXGb90SN52HJqbODjswfLmLzCdvIU78a7aBOvHjl2oQ1pAlz4tglZEPqKBlUci9Sw0ycVnjMWO5kimMA==
-  dependencies:
-    "@backstage/backend-plugin-api" "^0.7.0"
-    "@backstage/plugin-auth-node" "^0.4.17"
-    passport-github2 "^0.1.12"
-
 "@backstage/plugin-auth-backend-module-github-provider@^0.1.3":
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/@backstage/plugin-auth-backend-module-github-provider/-/plugin-auth-backend-module-github-provider-0.1.3.tgz#3eba5deb2c738967e2ee5ac834e894216c83712f"
@@ -10759,7 +10750,6 @@ anymatch@^3.0.3, anymatch@~3.1.2:
 "app@link:packages/app":
   version "0.0.0"
   dependencies:
-    "@backstage-community/plugin-github-actions" "^0.6.19"
     "@backstage-community/plugin-sonarqube" "^0.7.19"
     "@backstage/app-defaults" "^1.4.4"
     "@backstage/catalog-model" "^1.4.3"
